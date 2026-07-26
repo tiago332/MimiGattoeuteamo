@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para minha melhor amiga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-fundo-1: #6f9bc9;
+    --azul-fundo-2: #3f6491;
+    --azul-escuro: #24405f;
+    --branco-flor: #ffffff;
+    --branco-suave: #f4f8fc;
+    --rosa-leve: #f3d9e2;
+    --sombra: rgba(20, 40, 60, 0.25);
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(160deg, var(--azul-fundo-1) 0%, var(--azul-fundo-2) 55%, var(--azul-escuro) 100%);
+    color: var(--branco-suave);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* padrão de florzinhas brancas espalhadas no fundo */
+  .flores-fundo{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.35;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px),
+      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px),
+      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px);
+  }
+
+  svg.padrao-flores{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .conteudo{
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  header.hero{
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+
+  .eyebrow{
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rosa-leve);
+    margin-bottom: 14px;
+  }
+
+  h1{
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    margin: 0 0 10px;
+    color: #ffffff;
+    text-shadow: 0 4px 20px var(--sombra);
+  }
+
+  .subtitulo{
+    font-size: 1.05rem;
+    color: var(--branco-suave);
+    opacity: 0.9;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  section{
+    margin-top: 70px;
+  }
+
+  .titulo-secao{
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .titulo-secao::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: linear-gradient(to right, rgba(255,255,255,0.5), transparent);
+  }
+
+  /* carta */
+  .carta{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    padding: 32px 36px;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    box-shadow: 0 12px 30px var(--sombra);
+  }
+
+  .carta p{ margin: 0 0 16px; }
+  .carta p:last-child{ margin-bottom: 0; }
+  .assinatura{
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    text-align: right;
+    margin-top: 20px;
+    color: var(--rosa-leve);
+  }
+
+  /* galeria de fotos */
+  .galeria{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .foto-slot{
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.12);
+    border: 2px dashed rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    box-shadow: 0 8px 20px var(--sombra);
+    transition: transform 0.3s ease;
+  }
+
+  .foto-slot:hover{ transform: translateY(-4px) rotate(-0.5deg); }
+
+  .foto-slot img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .foto-slot span{
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 640px){
+    .galeria{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* motivos */
+  .motivos{
+    display: grid;
+    gap: 14px;
+  }
+
+  .motivo{
+    background: rgba(255,255,255,0.08);
+    border-left: 3px solid var(--rosa-leve);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .motivo b{ color: #fff; }
+
+  footer{
+    text-align: center;
+    margin-top: 80px;
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+
+  .coracao{
+    display:inline-block;
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+</style>
+</head>
+<body>
+
+<svg class="padrao-flores" viewBox="0 0 800 1600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <g id="florzinha">
+      <g fill="#ffffff">
+        <ellipse cx="0" cy="-6" rx="4" ry="6"/>
+        <ellipse cx="0" cy="6" rx="4" ry="6"/>
+        <ellipse cx="-6" cy="0" rx="6" ry="4"/>
+        <ellipse cx="6" cy="0" rx="6" ry="4"/>
+        <circle cx="0" cy="0" r="3" fill="#f3d9e2"/>
+      </g>
+    </g>
+  </defs>
+  <g opacity="0.55">
+    <use href="#florzinha" x="60" y="80"/>
+    <use href="#florzinha" x="220" y="180"/>
+    <use href="#florzinha" x="400" y="60"/>
+    <use href="#florzinha" x="620" y="140"/>
+    <use href="#florzinha" x="740" y="260"/>
+    <use href="#florzinha" x="120" y="320"/>
+    <use href="#florzinha" x="340" y="400"/>
+    <use href="#florzinha" x="500" y="340"/>
+    <use href="#florzinha" x="680" y="420"/>
+    <use href="#florzinha" x="40" y="500"/>
+    <use href="#florzinha" x="260" y="560"/>
+    <use href="#florzinha" x="460" y="520"/>
+    <use href="#florzinha" x="620" y="600"/>
+    <use href="#florzinha" x="760" y="560"/>
+    <use href="#florzinha" x="140" y="700"/>
+    <use href="#florzinha" x="360" y="720"/>
+    <use href="#florzinha" x="560" y="760"/>
+    <use href="#florzinha" x="700" y="700"/>
+    <use href="#florzinha" x="80" y="860"/>
+    <use href="#florzinha" x="300" y="900"/>
+    <use href="#florzinha" x="480" y="880"/>
+    <use href="#florzinha" x="660" y="900"/>
+    <use href="#florzinha" x="180" y="1020"/>
+    <use href="#florzinha" x="420" y="1040"/>
+    <use href="#florzinha" x="620" y="1060"/>
+    <use href="#florzinha" x="60" y="1160"/>
+    <use href="#florzinha" x="280" y="1200"/>
+    <use href="#florzinha" x="500" y="1180"/>
+    <use href="#florzinha" x="720" y="1220"/>
+    <use href="#florzinha" x="140" y="1340"/>
+    <use href="#florzinha" x="380" y="1360"/>
+    <use href="#florzinha" x="580" y="1400"/>
+    <use href="#florzinha" x="60" y="1500"/>
+    <use href="#florzinha" x="300" y="1520"/>
+    <use href="#florzinha" x="520" y="1540"/>
+    <use href="#florzinha" x="720" y="1480"/>
+  </g>
+</svg>
+
+<div class="conteudo">
+
+  <header class="hero">
+    <div class="eyebrow">para a melhor amiga do mundo</div>
+    <h1>Mirelly Gatto 💙</h1>
+    <p class="subtitulo">Um cantinho só nosso pra guardar as fotos, as risadas e os motivos de eu te amar tanto.</p>
+  </header>
+
+  <section id="carta">
+    <div class="titulo-secao">uma cartinha pra você</div>
+    <div class="carta">
+      <p>Oi, MIMIIII!</p>
+      <p>
+        Escreva aqui a sua mensagem pra ela — pode ser sobre como vocês se conheceram,
+        um momento marcante da amizade, ou simplesmente o quanto ela é importante pra você.
+        Fica à vontade pra escrever do seu jeito, sem formalidade nenhuma.
+      </p>
+      <p>
+        Troque este parágrafo pelo texto que você quiser. Esse é o coração do site.
+      </p>
+      <div class="assinatura">com carinho, MEU SIX </div>
+    </div>
+  </section>
+
+<section id="fotos">
+  <div class="titulo-secao">nossos momentos</div>
+  <div class="galeria">
+    <div class="foto-slot"><img src="fotos/foto_1.jpeg" alt="foto 1"></div>
+    <div class="foto-slot"><img src="fotos/foto_2.jpeg" alt="foto 2"></div>
+    <div class="foto-slot"><img src="fotos/foto_3.jpeg" alt="foto 3"></div>
+    <div class="foto-slot"><img src="fotos/foto_4.jpeg" alt="foto 4"></div>
+    <div class="foto-slot"><img src="fotos/foto_5.jpeg" alt="foto 5"></div>
+    <div class="foto-slot"><img src="fotos/foto_6.jpeg" alt="foto 6"></div>
+  </div>
+</section>
+
+  <section id="motivos">
+    <div class="titulo-secao">motivos pra te amar</div>
+    <div class="motivos">
+      <div class="motivo"><b>01.</b> Escreva aqui o primeiro motivo.</div>
+      <div class="motivo"><b>02.</b> Escreva aqui o segundo motivo.</div>
+      <div class="motivo"><b>03.</b> Escreva aqui o terceiro motivo.</div>
+      <div class="motivo"><b>04.</b> Escreva aqui o quarto motivo.</div>
+    </div>
+  </section>
+
+  <footer>
+    feito com carinho pra melhor amizade
+    <div class="coracao">💙🤍</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
