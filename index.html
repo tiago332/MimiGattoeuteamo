@@ -19,6 +19,11 @@
 
   * { box-sizing: border-box; }
 
+  html{
+    background: #3f6491;
+    overscroll-behavior: none;
+  }
+
   body{
     margin:0;
     font-family: 'Nunito', sans-serif;
@@ -27,21 +32,10 @@
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior: none;
   }
 
   /* padrão de florzinhas brancas espalhadas no fundo */
-  .flores-fundo{
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.35;
-    pointer-events: none;
-    background-image:
-      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px),
-      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px),
-      radial-gradient(circle at center, var(--branco-flor) 0 3px, transparent 3px);
-  }
-
   svg.padrao-flores{
     position: fixed;
     inset: 0;
@@ -56,7 +50,7 @@
     z-index: 1;
     max-width: 880px;
     margin: 0 auto;
-    padding: 60px 24px 100px;
+    padding: 60px 24px 180px;
   }
 
   header.hero{
@@ -204,6 +198,139 @@
     margin-top: 10px;
     font-size: 1.4rem;
   }
+
+  /* ondas de praia no fundo */
+  .ondas-fundo{
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    height: 26vh;
+    min-height: 180px;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .ondas-fundo svg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+  }
+
+  .onda-camada1{ animation: onda-mover 16s linear infinite; opacity: 0.55; }
+  .onda-camada2{ animation: onda-mover 11s linear infinite reverse; opacity: 0.35; }
+  .onda-camada3{ animation: onda-mover 22s linear infinite; opacity: 0.9; }
+
+  @keyframes onda-mover{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-800px); }
+  }
+
+  /* versículo no canto inferior direito */
+  .versiculo-canto{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 2;
+    max-width: 240px;
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: #ffffff;
+    background: rgba(63, 100, 145, 0.35);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 6px 18px var(--sombra);
+  }
+
+  .versiculo-canto .ref{
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    color: var(--rosa-leve);
+  }
+
+  @media (max-width: 640px){
+    .versiculo-canto{
+      max-width: 170px;
+      font-size: 0.7rem;
+      right: 10px;
+      bottom: 10px;
+      padding: 8px 10px;
+    }
+  }
+
+  /* legenda acima do botão de música */
+  .legenda-musica{
+    margin-top: 22px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #ffffff;
+    text-shadow: 0 2px 12px var(--sombra);
+  }
+
+  .legenda-musica .always{
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--rosa-leve);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* botão de música (estilo neumórfico escuro, isolado numa classe própria) */
+  .player-musica{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .botao-musica-neu{
+    height: 50px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: Consolas, "Courier New", monospace;
+    border: solid #cfe0f0 1px;
+    font-size: 15px;
+    color: #3f6491;
+    transition: 500ms;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #ffffff, #e9f1fa);
+    box-shadow: -1px -5px 15px #a9c8e8, 5px 5px 15px #a9c8e8,
+      inset 5px 5px 10px #e9f1fa, inset -5px -5px 10px #ffffff;
+  }
+
+  .botao-musica-neu:hover{
+    box-shadow: 1px 1px 13px #6f9bc9, -1px -1px 13px #dceaf7;
+    color: #24405f;
+    transition: 500ms;
+  }
+
+  .botao-musica-neu:active{
+    box-shadow: 1px 1px 13px #6f9bc9, -1px -1px 33px #dceaf7;
+    color: #24405f;
+    transition: 100ms;
+  }
+
+  .botao-musica-neu .icone-play{
+    font-size: 13px;
+  }
 </style>
 </head>
 <body>
@@ -220,45 +347,106 @@
       </g>
     </g>
   </defs>
-  <g opacity="0.55">
-    <use href="#florzinha" x="60" y="80"/>
-    <use href="#florzinha" x="220" y="180"/>
-    <use href="#florzinha" x="400" y="60"/>
-    <use href="#florzinha" x="620" y="140"/>
-    <use href="#florzinha" x="740" y="260"/>
-    <use href="#florzinha" x="120" y="320"/>
-    <use href="#florzinha" x="340" y="400"/>
-    <use href="#florzinha" x="500" y="340"/>
-    <use href="#florzinha" x="680" y="420"/>
-    <use href="#florzinha" x="40" y="500"/>
-    <use href="#florzinha" x="260" y="560"/>
-    <use href="#florzinha" x="460" y="520"/>
-    <use href="#florzinha" x="620" y="600"/>
-    <use href="#florzinha" x="760" y="560"/>
-    <use href="#florzinha" x="140" y="700"/>
-    <use href="#florzinha" x="360" y="720"/>
-    <use href="#florzinha" x="560" y="760"/>
-    <use href="#florzinha" x="700" y="700"/>
-    <use href="#florzinha" x="80" y="860"/>
-    <use href="#florzinha" x="300" y="900"/>
-    <use href="#florzinha" x="480" y="880"/>
-    <use href="#florzinha" x="660" y="900"/>
-    <use href="#florzinha" x="180" y="1020"/>
-    <use href="#florzinha" x="420" y="1040"/>
-    <use href="#florzinha" x="620" y="1060"/>
-    <use href="#florzinha" x="60" y="1160"/>
-    <use href="#florzinha" x="280" y="1200"/>
-    <use href="#florzinha" x="500" y="1180"/>
-    <use href="#florzinha" x="720" y="1220"/>
-    <use href="#florzinha" x="140" y="1340"/>
-    <use href="#florzinha" x="380" y="1360"/>
-    <use href="#florzinha" x="580" y="1400"/>
-    <use href="#florzinha" x="60" y="1500"/>
-    <use href="#florzinha" x="300" y="1520"/>
-    <use href="#florzinha" x="520" y="1540"/>
-    <use href="#florzinha" x="720" y="1480"/>
+  <g opacity="0.5">
+    <use href="#florzinha" x="40" y="50"/>
+    <use href="#florzinha" x="150" y="120"/>
+    <use href="#florzinha" x="260" y="40"/>
+    <use href="#florzinha" x="370" y="110"/>
+    <use href="#florzinha" x="480" y="50"/>
+    <use href="#florzinha" x="590" y="130"/>
+    <use href="#florzinha" x="700" y="60"/>
+    <use href="#florzinha" x="760" y="180"/>
+    <use href="#florzinha" x="90" y="220"/>
+    <use href="#florzinha" x="200" y="260"/>
+    <use href="#florzinha" x="320" y="200"/>
+    <use href="#florzinha" x="430" y="270"/>
+    <use href="#florzinha" x="540" y="220"/>
+    <use href="#florzinha" x="650" y="280"/>
+    <use href="#florzinha" x="30" y="340"/>
+    <use href="#florzinha" x="160" y="380"/>
+    <use href="#florzinha" x="270" y="340"/>
+    <use href="#florzinha" x="380" y="400"/>
+    <use href="#florzinha" x="500" y="360"/>
+    <use href="#florzinha" x="610" y="400"/>
+    <use href="#florzinha" x="720" y="360"/>
+    <use href="#florzinha" x="70" y="460"/>
+    <use href="#florzinha" x="190" y="500"/>
+    <use href="#florzinha" x="310" y="470"/>
+    <use href="#florzinha" x="420" y="520"/>
+    <use href="#florzinha" x="540" y="480"/>
+    <use href="#florzinha" x="650" y="520"/>
+    <use href="#florzinha" x="760" y="470"/>
+    <use href="#florzinha" x="40" y="600"/>
+    <use href="#florzinha" x="150" y="640"/>
+    <use href="#florzinha" x="270" y="600"/>
+    <use href="#florzinha" x="390" y="650"/>
+    <use href="#florzinha" x="500" y="610"/>
+    <use href="#florzinha" x="610" y="650"/>
+    <use href="#florzinha" x="720" y="610"/>
+    <use href="#florzinha" x="90" y="740"/>
+    <use href="#florzinha" x="210" y="780"/>
+    <use href="#florzinha" x="330" y="730"/>
+    <use href="#florzinha" x="440" y="790"/>
+    <use href="#florzinha" x="560" y="750"/>
+    <use href="#florzinha" x="670" y="790"/>
+    <use href="#florzinha" x="30" y="860"/>
+    <use href="#florzinha" x="160" y="900"/>
+    <use href="#florzinha" x="280" y="860"/>
+    <use href="#florzinha" x="400" y="910"/>
+    <use href="#florzinha" x="520" y="870"/>
+    <use href="#florzinha" x="640" y="910"/>
+    <use href="#florzinha" x="750" y="860"/>
+    <use href="#florzinha" x="70" y="1000"/>
+    <use href="#florzinha" x="190" y="1040"/>
+    <use href="#florzinha" x="310" y="990"/>
+    <use href="#florzinha" x="430" y="1040"/>
+    <use href="#florzinha" x="550" y="1000"/>
+    <use href="#florzinha" x="670" y="1040"/>
+    <use href="#florzinha" x="40" y="1120"/>
+    <use href="#florzinha" x="160" y="1160"/>
+    <use href="#florzinha" x="280" y="1120"/>
+    <use href="#florzinha" x="400" y="1170"/>
+    <use href="#florzinha" x="520" y="1130"/>
+    <use href="#florzinha" x="640" y="1170"/>
+    <use href="#florzinha" x="750" y="1120"/>
+    <use href="#florzinha" x="90" y="1260"/>
+    <use href="#florzinha" x="210" y="1300"/>
+    <use href="#florzinha" x="330" y="1250"/>
+    <use href="#florzinha" x="450" y="1300"/>
+    <use href="#florzinha" x="570" y="1260"/>
+    <use href="#florzinha" x="680" y="1300"/>
+    <use href="#florzinha" x="30" y="1400"/>
+    <use href="#florzinha" x="150" y="1440"/>
+    <use href="#florzinha" x="270" y="1400"/>
+    <use href="#florzinha" x="390" y="1450"/>
+    <use href="#florzinha" x="510" y="1410"/>
+    <use href="#florzinha" x="630" y="1450"/>
+    <use href="#florzinha" x="740" y="1400"/>
+    <use href="#florzinha" x="70" y="1540"/>
+    <use href="#florzinha" x="190" y="1580"/>
+    <use href="#florzinha" x="310" y="1540"/>
+    <use href="#florzinha" x="430" y="1580"/>
+    <use href="#florzinha" x="550" y="1540"/>
+    <use href="#florzinha" x="670" y="1580"/>
   </g>
 </svg>
+
+<div class="ondas-fundo">
+  <svg class="onda-camada3" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path fill="#ffffff" d="M0,140 Q100,120 200,140 T400,140 T600,140 T800,140 T1000,140 T1200,140 T1400,140 T1600,140 L1600,200 L0,200 Z"/>
+  </svg>
+  <svg class="onda-camada2" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path fill="#ffffff" d="M0,110 Q100,80 200,110 T400,110 T600,110 T800,110 T1000,110 T1200,110 T1400,110 T1600,110 L1600,200 L0,200 Z"/>
+  </svg>
+  <svg class="onda-camada1" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path fill="#ffffff" d="M0,90 Q100,60 200,90 T400,90 T600,90 T800,90 T1000,90 T1200,90 T1400,90 T1600,90 L1600,200 L0,200 Z"/>
+  </svg>
+</div>
+
+<div class="versiculo-canto">
+  "Em todo tempo ama o amigo, e na angústia se nasce o irmão."
+  <span class="ref">— Provérbios 17:17</span>
+</div>
 
 <div class="conteudo">
 
@@ -266,21 +454,28 @@
     <div class="eyebrow">para a melhor amiga do mundo</div>
     <h1>Mirelly Gatto 💙</h1>
     <p class="subtitulo">Um cantinho só nosso pra guardar as fotos, as risadas e os motivos de eu te amar tanto.</p>
+
+    <div class="legenda-musica">
+      nossa música para sempre
+      <span class="always">always</span>
+    </div>
+    <div class="player-musica">
+      <button class="botao-musica-neu" id="btn-musica" onclick="toggleMusica()">
+        <span class="icone-play" id="icone-btn-musica">▶</span>
+        <span id="texto-btn-musica">tocar</span>
+      </button>
+    </div>
+    <audio id="audio-fundo" src="musica.mp3.mp3" loop preload="none"></audio>
   </header>
 
   <section id="carta">
     <div class="titulo-secao">uma cartinha pra você</div>
     <div class="carta">
-      <p>Oi, MIMIIII!</p>
-      <p>
-        Escreva aqui a sua mensagem pra ela — pode ser sobre como vocês se conheceram,
-        um momento marcante da amizade, ou simplesmente o quanto ela é importante pra você.
-        Fica à vontade pra escrever do seu jeito, sem formalidade nenhuma.
-      </p>
-      <p>
-        Troque este parágrafo pelo texto que você quiser. Esse é o coração do site.
-      </p>
-      <div class="assinatura">com carinho, MEU SIX</div>
+      <p>Mi, em primeiro lugar, sou infinitamente grato a Deus por ter colocado você na minha vida como amiga. Sinceramente, não sei o que seria de mim sozinho nesses últimos tempos, nem com quem compartilharia meus dias.</p>
+      <p>Estar ao seu lado me faz muito feliz, e é um presente que quero cuidar para a vida toda.</p>
+      <p>Eu te amo demais! Obrigado por sempre me ouvir, me apoiar e estar presente. Fiz este texto de coração renovado para você. Vou te amar para sempre.</p>
+      <p><em>I will love you forever.</em></p>
+      <div class="assinatura">com carinho, SEU SEVEN</div>
     </div>
   </section>
 
@@ -299,10 +494,10 @@
   <section id="motivos">
     <div class="titulo-secao">motivos pra te amar</div>
     <div class="motivos">
-      <div class="motivo"><b>01.</b> Escreva aqui o primeiro motivo.</div>
-      <div class="motivo"><b>02.</b> Escreva aqui o segundo motivo.</div>
-      <div class="motivo"><b>03.</b> Escreva aqui o terceiro motivo.</div>
-      <div class="motivo"><b>04.</b> Escreva aqui o quarto motivo.</div>
+      <div class="motivo"><b>01.</b> Ver você se aprofundando mais em Deus a cada dia me enche de orgulho.</div>
+      <div class="motivo"><b>02.</b> Você nunca me faltou: sempre esteve pronta para me ajudar e me acolher com compreensão.</div>
+      <div class="motivo"><b>03.</b> Foi a única mulher que soube me trazer esperança nos meus piores momentos.</div>
+      <div class="motivo"><b>04.</b> E o mais importante de tudo: o seu coração é lindo, humilde e transborda amor e gentileza por onde passa, especialmente com as crianças.</div>
     </div>
   </section>
 
@@ -312,6 +507,23 @@
   </footer>
 
 </div>
+
+<script>
+function toggleMusica(){
+  const audio = document.getElementById('audio-fundo');
+  const icone = document.getElementById('icone-btn-musica');
+  const texto = document.getElementById('texto-btn-musica');
+  if(audio.paused){
+    audio.play().catch(()=>{});
+    icone.textContent = '❚❚';
+    texto.textContent = 'pausar';
+  } else {
+    audio.pause();
+    icone.textContent = '▶';
+    texto.textContent = 'tocar';
+  }
+}
+</script>
 
 </body>
 </html>
