@@ -331,6 +331,60 @@
   .botao-musica-neu .icone-play{
     font-size: 13px;
   }
+
+  /* ajustes gerais pra celular */
+  @media (max-width: 480px){
+    .ondas-fundo{
+      height: 12vh;
+      min-height: 90px;
+    }
+
+    .conteudo{
+      padding: 40px 16px 140px;
+    }
+
+    header.hero{
+      padding: 24px 0 12px;
+    }
+
+    .subtitulo{
+      font-size: 0.95rem;
+    }
+
+    .carta{
+      padding: 22px 20px;
+      font-size: 0.98rem;
+    }
+
+    .titulo-secao{
+      font-size: 1.3rem;
+    }
+
+    .galeria{
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .motivo{
+      font-size: 0.92rem;
+      padding: 14px 16px;
+    }
+
+    .legenda-musica{
+      font-size: 0.92rem;
+    }
+  }
+
+  @media (max-width: 360px){
+    .galeria{
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    h1{
+      font-size: 2rem;
+    }
+  }
 </style>
 </head>
 <body>
@@ -465,7 +519,7 @@
         <span id="texto-btn-musica">tocar</span>
       </button>
     </div>
-    <audio id="audio-fundo" src="musica.mp3.mp3" loop preload="none"></audio>
+    <audio id="audio-fundo" src="musica.mp3" loop preload="none"></audio>
   </header>
 
   <section id="carta">
@@ -502,7 +556,7 @@
   </section>
 
   <footer>
-    feito com carinho pra melhor amizade
+   TE AMO GAROTINHA
     <div class="coracao">💙🤍</div>
   </footer>
 
