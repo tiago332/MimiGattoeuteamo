@@ -49,7 +49,7 @@
       entradas.forEach((e) => {
         if(e.isIntersecting){ e.target.classList.add('visto'); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
     revelar.forEach((el) => obs.observe(el));
   } else {
     revelar.forEach((el) => el.classList.add('visto'));
@@ -69,6 +69,18 @@
   const fotos = $$('.polaroid');
   const pontos = $('#pontos');
   fotos.forEach(() => pontos.appendChild(document.createElement('span')));
+
+  // se alguma foto falhar (rede ruim no celular), tenta de novo até 2 vezes
+  fotos.forEach((f) => {
+    const img = f.querySelector('img');
+    const original = img.getAttribute('src');
+    let tentativas = 0;
+    img.addEventListener('error', () => {
+      if(tentativas >= 2) return;
+      tentativas++;
+      setTimeout(() => { img.src = original + '?r=' + tentativas; }, 800 * tentativas);
+    });
+  });
 
   function marcarPonto(){
     const centro = galeria.scrollLeft + galeria.clientWidth / 2;

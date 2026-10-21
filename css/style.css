@@ -155,7 +155,7 @@ button{ font: inherit; color: inherit; }
 
 /* ---------- hero ---------- */
 .hero{
-  min-height: 100svh;
+  min-height: 92svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,8 +194,36 @@ h1 span{
   margin: 0 auto;
 }
 
+/* leque de polaroids no hero */
+.pilha{
+  position: relative;
+  display: block;
+  width: min(280px, 78vw);
+  height: 200px;
+  margin: 36px auto 0;
+}
+.pilha img{
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 46%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--papel-2);
+  border: 7px solid #fff;
+  border-bottom-width: 22px;
+  border-radius: 3px;
+  box-shadow: var(--sombra);
+  transform: translate(-50%, -50%) rotate(var(--g)) translateX(var(--x));
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.pilha img:nth-child(1){ --g: -12deg; --x: -62%; }
+.pilha img:nth-child(2){ --g: 2deg;   --x: 0%; z-index: 2; }
+.pilha img:nth-child(3){ --g: 13deg;  --x: 62%; }
+.pilha:hover img:nth-child(1){ --g: -16deg; --x: -76%; }
+.pilha:hover img:nth-child(3){ --g: 17deg;  --x: 76%; }
+
 .rolar{
-  margin-top: 40px;
+  margin-top: 28px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
