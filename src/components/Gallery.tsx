@@ -71,6 +71,8 @@ export function Gallery() {
 function Lightbox({ indice, setIndice }: { indice: number; setIndice: (i: number | null) => void }) {
   const fechar = useRef<HTMLButtonElement>(null);
   const inicioX = useRef<number | null>(null);
+  // só devolve o foco (com contorno) pra foto se a pessoa estiver usando teclado
+  const usouTeclado = useRef(false);
   const total = fotos.length;
   const ir = useCallback((d: number) => setIndice((indice + d + total) % total), [indice, setIndice, total]);
   const f = fotos[indice];
@@ -78,15 +80,17 @@ function Lightbox({ indice, setIndice }: { indice: number; setIndice: (i: number
   useEffect(() => {
     const anterior = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
-    fechar.current?.focus();
+    fechar.current?.focus({ preventScroll: true });
     return () => {
       document.body.style.overflow = "";
-      anterior?.focus();
+      if (usouTeclado.current) anterior?.focus({ preventScroll: true });
+      else anterior?.blur();
     };
   }, []);
 
   useEffect(() => {
     const tecla = (e: KeyboardEvent) => {
+      usouTeclado.current = true;
       if (e.key === "Escape") setIndice(null);
       if (e.key === "ArrowLeft") ir(-1);
       if (e.key === "ArrowRight") ir(1);
