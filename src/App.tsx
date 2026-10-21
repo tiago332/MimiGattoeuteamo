@@ -87,7 +87,7 @@ export default function App() {
       <MusicPlayer visivel={aberto} tocando={tocando} progresso={progresso} onToggle={alternar} />
       <audio
         ref={audio}
-        src={`/${conteudo.musica.arquivo}`}
+        src={`${import.meta.env.BASE_URL}${conteudo.musica.arquivo}`}
         loop
         preload="metadata"
         onPlay={() => setTocando(true)}

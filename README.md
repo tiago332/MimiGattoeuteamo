@@ -52,17 +52,17 @@ de shadcn ou de bibliotecas compatíveis (21st.dev, Magic UI etc.) entra copiand
   e o original reiniciava todas as partículas, fazendo o fundo piscar.
 - No `App.tsx` o número de partículas cai no celular (450) e para quem usa "reduzir movimento" (200).
 
+## Publicação (GitHub Pages)
+
+Site no ar: https://tiago332.github.io/MimiGattoeuteamo/
+
+Todo `git push` no `main` dispara `.github/workflows/deploy.yml`, que roda `npm run build` e publica a pasta `dist/`.
+Em Settings → Pages, o campo Source precisa estar em **GitHub Actions**.
+O caminho `/MimiGattoeuteamo/` está em `vite.config.ts` (`base`); se o repositório mudar de nome, troque lá.
+
 ## Versionamento
 
-- `main` — versão original (tag `v1-original`)
+- `main` — versão publicada no site (React + partículas). O site original fica na tag `v1-original`
 - `redesign` — álbum em HTML/CSS/JS puro (fundo creme)
-- `react` — esta versão (React + partículas)
+- `react` — cópia do main
 
-Quando a conta nova do GitHub estiver pronta:
-
-```bash
-git remote add origin https://github.com/USUARIO-NOVO/NOME-DO-REPO.git
-git push -u origin react
-```
-
-Crie o repositório como **privado** se não quiser que ninguém veja antes da hora.

@@ -72,7 +72,7 @@ export const conteudo = {
 } as const;
 
 export const fotos = [1, 2, 3, 4, 5, 6].map((n) => ({
-  src: `/foto_${n}.jpeg`,
+  src: `${import.meta.env.BASE_URL}foto_${n}.jpeg`,
   alt: `foto ${n}`,
   legenda: conteudo.fotos.legendas[n - 1],
 }));
