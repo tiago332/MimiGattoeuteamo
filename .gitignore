@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.vercel
+node_modules/

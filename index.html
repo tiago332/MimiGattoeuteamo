@@ -2,582 +2,130 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f6efe4">
+<meta name="robots" content="noindex, nofollow">
 <title>Para minha melhor amiga</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --azul-fundo-1: #6f9bc9;
-    --azul-fundo-2: #3f6491;
-    --azul-escuro: #24405f;
-    --branco-flor: #ffffff;
-    --branco-suave: #f4f8fc;
-    --rosa-leve: #f3d9e2;
-    --sombra: rgba(20, 40, 60, 0.25);
-  }
-
-  * { box-sizing: border-box; }
-
-  html{
-    background: #3f6491;
-    overscroll-behavior: none;
-  }
-
-  body{
-    margin:0;
-    font-family: 'Nunito', sans-serif;
-    background: linear-gradient(160deg, var(--azul-fundo-1) 0%, var(--azul-fundo-2) 55%, var(--azul-escuro) 100%);
-    color: var(--branco-suave);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    overscroll-behavior: none;
-  }
-
-  /* padrão de florzinhas brancas espalhadas no fundo */
-  svg.padrao-flores{
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .conteudo{
-    position: relative;
-    z-index: 1;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 60px 24px 180px;
-  }
-
-  header.hero{
-    text-align: center;
-    padding: 40px 0 20px;
-  }
-
-  .eyebrow{
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--rosa-leve);
-    margin-bottom: 14px;
-  }
-
-  h1{
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
-    margin: 0 0 10px;
-    color: #ffffff;
-    text-shadow: 0 4px 20px var(--sombra);
-  }
-
-  .subtitulo{
-    font-size: 1.05rem;
-    color: var(--branco-suave);
-    opacity: 0.9;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  section{
-    margin-top: 70px;
-  }
-
-  .titulo-secao{
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: #ffffff;
-    margin-bottom: 22px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .titulo-secao::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background: linear-gradient(to right, rgba(255,255,255,0.5), transparent);
-  }
-
-  /* carta */
-  .carta{
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(6px);
-    border-radius: 18px;
-    padding: 32px 36px;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    box-shadow: 0 12px 30px var(--sombra);
-  }
-
-  .carta p{ margin: 0 0 16px; }
-  .carta p:last-child{ margin-bottom: 0; }
-  .assinatura{
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.2rem;
-    text-align: right;
-    margin-top: 20px;
-    color: var(--rosa-leve);
-  }
-
-  /* galeria de fotos */
-  .galeria{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  .foto-slot{
-    aspect-ratio: 1 / 1;
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(255,255,255,0.12);
-    border: 2px dashed rgba(255,255,255,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 12px;
-    box-shadow: 0 8px 20px var(--sombra);
-    transition: transform 0.3s ease;
-  }
-
-  .foto-slot:hover{ transform: translateY(-4px) rotate(-0.5deg); }
-
-  .foto-slot img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .foto-slot span{
-    font-size: 0.85rem;
-    opacity: 0.85;
-  }
-
-  @media (max-width: 640px){
-    .galeria{ grid-template-columns: repeat(2, 1fr); }
-  }
-
-  /* motivos */
-  .motivos{
-    display: grid;
-    gap: 14px;
-  }
-
-  .motivo{
-    background: rgba(255,255,255,0.08);
-    border-left: 3px solid var(--rosa-leve);
-    border-radius: 10px;
-    padding: 16px 20px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .motivo b{ color: #fff; }
-
-  footer{
-    text-align: center;
-    margin-top: 80px;
-    font-size: 0.9rem;
-    opacity: 0.75;
-  }
-
-  .coracao{
-    display:inline-block;
-    margin-top: 10px;
-    font-size: 1.4rem;
-  }
-
-  /* ondas de praia no fundo */
-  .ondas-fundo{
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    height: 26vh;
-    min-height: 180px;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .ondas-fundo svg{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-  }
-
-  .onda-camada1{ animation: onda-mover 16s linear infinite; opacity: 0.55; }
-  .onda-camada2{ animation: onda-mover 11s linear infinite reverse; opacity: 0.35; }
-  .onda-camada3{ animation: onda-mover 22s linear infinite; opacity: 0.9; }
-
-  @keyframes onda-mover{
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-800px); }
-  }
-
-  /* versículo no canto inferior direito */
-  .versiculo-canto{
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 2;
-    max-width: 240px;
-    text-align: right;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    color: #ffffff;
-    background: rgba(63, 100, 145, 0.35);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 12px;
-    padding: 10px 14px;
-    box-shadow: 0 6px 18px var(--sombra);
-  }
-
-  .versiculo-canto .ref{
-    display: block;
-    margin-top: 4px;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 0.68rem;
-    letter-spacing: 1px;
-    color: var(--rosa-leve);
-  }
-
-  @media (max-width: 640px){
-    .versiculo-canto{
-      max-width: 170px;
-      font-size: 0.7rem;
-      right: 10px;
-      bottom: 10px;
-      padding: 8px 10px;
-    }
-  }
-
-  /* legenda acima do botão de música */
-  .legenda-musica{
-    margin-top: 22px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: #ffffff;
-    text-shadow: 0 2px 12px var(--sombra);
-  }
-
-  .legenda-musica .always{
-    font-family: 'Nunito', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    color: var(--rosa-leve);
-    display: block;
-    margin-top: 2px;
-  }
-
-  /* botão de música (estilo neumórfico escuro, isolado numa classe própria) */
-  .player-musica{
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  .botao-musica-neu{
-    height: 50px;
-    width: 130px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-family: Consolas, "Courier New", monospace;
-    border: solid #cfe0f0 1px;
-    font-size: 15px;
-    color: #3f6491;
-    transition: 500ms;
-    border-radius: 8px;
-    background: linear-gradient(145deg, #ffffff, #e9f1fa);
-    box-shadow: -1px -5px 15px #a9c8e8, 5px 5px 15px #a9c8e8,
-      inset 5px 5px 10px #e9f1fa, inset -5px -5px 10px #ffffff;
-  }
-
-  .botao-musica-neu:hover{
-    box-shadow: 1px 1px 13px #6f9bc9, -1px -1px 13px #dceaf7;
-    color: #24405f;
-    transition: 500ms;
-  }
-
-  .botao-musica-neu:active{
-    box-shadow: 1px 1px 13px #6f9bc9, -1px -1px 33px #dceaf7;
-    color: #24405f;
-    transition: 100ms;
-  }
-
-  .botao-musica-neu .icone-play{
-    font-size: 13px;
-  }
-
-  /* ajustes gerais pra celular */
-  @media (max-width: 480px){
-    .ondas-fundo{
-      height: 12vh;
-      min-height: 90px;
-    }
-
-    .conteudo{
-      padding: 40px 16px 140px;
-    }
-
-    header.hero{
-      padding: 24px 0 12px;
-    }
-
-    .subtitulo{
-      font-size: 0.95rem;
-    }
-
-    .carta{
-      padding: 22px 20px;
-      font-size: 0.98rem;
-    }
-
-    .titulo-secao{
-      font-size: 1.3rem;
-    }
-
-    .galeria{
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .motivo{
-      font-size: 0.92rem;
-      padding: 14px 16px;
-    }
-
-    .legenda-musica{
-      font-size: 0.92rem;
-    }
-  }
-
-  @media (max-width: 360px){
-    .galeria{
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    h1{
-      font-size: 2rem;
-    }
-  }
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<svg class="padrao-flores" viewBox="0 0 800 1600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <g id="florzinha">
-      <g fill="#ffffff">
-        <ellipse cx="0" cy="-6" rx="4" ry="6"/>
-        <ellipse cx="0" cy="6" rx="4" ry="6"/>
-        <ellipse cx="-6" cy="0" rx="6" ry="4"/>
-        <ellipse cx="6" cy="0" rx="6" ry="4"/>
-        <circle cx="0" cy="0" r="3" fill="#f3d9e2"/>
-      </g>
-    </g>
-  </defs>
-  <g opacity="0.5">
-    <use href="#florzinha" x="40" y="50"/>
-    <use href="#florzinha" x="150" y="120"/>
-    <use href="#florzinha" x="260" y="40"/>
-    <use href="#florzinha" x="370" y="110"/>
-    <use href="#florzinha" x="480" y="50"/>
-    <use href="#florzinha" x="590" y="130"/>
-    <use href="#florzinha" x="700" y="60"/>
-    <use href="#florzinha" x="760" y="180"/>
-    <use href="#florzinha" x="90" y="220"/>
-    <use href="#florzinha" x="200" y="260"/>
-    <use href="#florzinha" x="320" y="200"/>
-    <use href="#florzinha" x="430" y="270"/>
-    <use href="#florzinha" x="540" y="220"/>
-    <use href="#florzinha" x="650" y="280"/>
-    <use href="#florzinha" x="30" y="340"/>
-    <use href="#florzinha" x="160" y="380"/>
-    <use href="#florzinha" x="270" y="340"/>
-    <use href="#florzinha" x="380" y="400"/>
-    <use href="#florzinha" x="500" y="360"/>
-    <use href="#florzinha" x="610" y="400"/>
-    <use href="#florzinha" x="720" y="360"/>
-    <use href="#florzinha" x="70" y="460"/>
-    <use href="#florzinha" x="190" y="500"/>
-    <use href="#florzinha" x="310" y="470"/>
-    <use href="#florzinha" x="420" y="520"/>
-    <use href="#florzinha" x="540" y="480"/>
-    <use href="#florzinha" x="650" y="520"/>
-    <use href="#florzinha" x="760" y="470"/>
-    <use href="#florzinha" x="40" y="600"/>
-    <use href="#florzinha" x="150" y="640"/>
-    <use href="#florzinha" x="270" y="600"/>
-    <use href="#florzinha" x="390" y="650"/>
-    <use href="#florzinha" x="500" y="610"/>
-    <use href="#florzinha" x="610" y="650"/>
-    <use href="#florzinha" x="720" y="610"/>
-    <use href="#florzinha" x="90" y="740"/>
-    <use href="#florzinha" x="210" y="780"/>
-    <use href="#florzinha" x="330" y="730"/>
-    <use href="#florzinha" x="440" y="790"/>
-    <use href="#florzinha" x="560" y="750"/>
-    <use href="#florzinha" x="670" y="790"/>
-    <use href="#florzinha" x="30" y="860"/>
-    <use href="#florzinha" x="160" y="900"/>
-    <use href="#florzinha" x="280" y="860"/>
-    <use href="#florzinha" x="400" y="910"/>
-    <use href="#florzinha" x="520" y="870"/>
-    <use href="#florzinha" x="640" y="910"/>
-    <use href="#florzinha" x="750" y="860"/>
-    <use href="#florzinha" x="70" y="1000"/>
-    <use href="#florzinha" x="190" y="1040"/>
-    <use href="#florzinha" x="310" y="990"/>
-    <use href="#florzinha" x="430" y="1040"/>
-    <use href="#florzinha" x="550" y="1000"/>
-    <use href="#florzinha" x="670" y="1040"/>
-    <use href="#florzinha" x="40" y="1120"/>
-    <use href="#florzinha" x="160" y="1160"/>
-    <use href="#florzinha" x="280" y="1120"/>
-    <use href="#florzinha" x="400" y="1170"/>
-    <use href="#florzinha" x="520" y="1130"/>
-    <use href="#florzinha" x="640" y="1170"/>
-    <use href="#florzinha" x="750" y="1120"/>
-    <use href="#florzinha" x="90" y="1260"/>
-    <use href="#florzinha" x="210" y="1300"/>
-    <use href="#florzinha" x="330" y="1250"/>
-    <use href="#florzinha" x="450" y="1300"/>
-    <use href="#florzinha" x="570" y="1260"/>
-    <use href="#florzinha" x="680" y="1300"/>
-    <use href="#florzinha" x="30" y="1400"/>
-    <use href="#florzinha" x="150" y="1440"/>
-    <use href="#florzinha" x="270" y="1400"/>
-    <use href="#florzinha" x="390" y="1450"/>
-    <use href="#florzinha" x="510" y="1410"/>
-    <use href="#florzinha" x="630" y="1450"/>
-    <use href="#florzinha" x="740" y="1400"/>
-    <use href="#florzinha" x="70" y="1540"/>
-    <use href="#florzinha" x="190" y="1580"/>
-    <use href="#florzinha" x="310" y="1540"/>
-    <use href="#florzinha" x="430" y="1580"/>
-    <use href="#florzinha" x="550" y="1540"/>
-    <use href="#florzinha" x="670" y="1580"/>
-  </g>
-</svg>
+<!--
+  =====================================================================
+  TEXTOS: todo texto marcado com  <!- - FRASE - ->  é provisório.
+  Troque à vontade; o layout se ajusta sozinho.
+  =====================================================================
+-->
 
-<div class="ondas-fundo">
-  <svg class="onda-camada3" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path fill="#ffffff" d="M0,140 Q100,120 200,140 T400,140 T600,140 T800,140 T1000,140 T1200,140 T1400,140 T1600,140 L1600,200 L0,200 Z"/>
-  </svg>
-  <svg class="onda-camada2" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path fill="#ffffff" d="M0,110 Q100,80 200,110 T400,110 T600,110 T800,110 T1000,110 T1200,110 T1400,110 T1600,110 L1600,200 L0,200 Z"/>
-  </svg>
-  <svg class="onda-camada1" viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path fill="#ffffff" d="M0,90 Q100,60 200,90 T400,90 T600,90 T800,90 T1000,90 T1200,90 T1400,90 T1600,90 L1600,200 L0,200 Z"/>
-  </svg>
+<!-- tela de abertura (o toque também libera a música no celular) -->
+<div class="abertura" id="abertura">
+  <div class="abertura-conteudo">
+    <div class="envelope" aria-hidden="true">
+      <div class="envelope-aba"></div>
+      <div class="envelope-selo">M</div>
+    </div>
+    <!-- FRASE --><p class="abertura-texto">tem uma coisinha aqui pra você, Mi</p>
+    <button class="botao-abrir" id="btn-abrir">abrir 💌</button>
+    <button class="abrir-sem-som" id="btn-abrir-mudo">abrir sem música</button>
+  </div>
 </div>
 
-<div class="versiculo-canto">
-  "Em todo tempo ama o amigo, e na angústia se nasce o irmão."
-  <span class="ref">— Provérbios 17:17</span>
-</div>
+<main class="conteudo">
 
-<div class="conteudo">
-
-  <header class="hero">
-    <div class="eyebrow">para a melhor amiga do mundo</div>
-    <h1>Mirelly Gatto 💙</h1>
-    <p class="subtitulo">Um cantinho só nosso pra guardar as fotos, as risadas e os motivos de eu te amar tanto.</p>
-
-    <div class="legenda-musica">
-      nossa música para sempre
-      <span class="always">always</span>
-    </div>
-    <div class="player-musica">
-      <button class="botao-musica-neu" id="btn-musica" onclick="toggleMusica()">
-        <span class="icone-play" id="icone-btn-musica">▶</span>
-        <span id="texto-btn-musica">tocar</span>
-      </button>
-    </div>
-    <audio id="audio-fundo" src="musica2.mp3" loop preload="none"></audio>
+  <header class="hero revelar">
+    <!-- FRASE --><div class="eyebrow">para a melhor amiga do mundo</div>
+    <h1>Mirelly <span>Gatto</span> 💙</h1>
+    <!-- FRASE --><p class="subtitulo">Um cantinho só nosso pra guardar as fotos, as risadas e os motivos de eu te amar tanto.</p>
+    <a href="#carta" class="rolar" aria-label="ir para a carta">
+      <span>role pra baixo</span>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </header>
 
-  <section id="carta">
-    <div class="titulo-secao">uma cartinha pra você</div>
-    <div class="carta">
+  <section id="carta" class="revelar">
+    <!-- FRASE --><h2 class="titulo-secao"><span class="num">01</span> uma cartinha pra você</h2>
+    <article class="carta">
+      <div class="carta-selo" aria-hidden="true">♥</div>
+      <!-- FRASE (carta inteira) -->
       <p>Mi, em primeiro lugar, sou infinitamente grato a Deus por ter colocado você na minha vida como amiga. Sinceramente, não sei o que seria de mim sozinho nesses últimos tempos, nem com quem compartilharia meus dias.</p>
       <p>Estar ao seu lado me faz muito feliz, e é um presente que quero cuidar para a vida toda.</p>
       <p>Eu te amo demais! Obrigado por sempre me ouvir, me apoiar e estar presente. Fiz este texto de coração renovado para você. Vou te amar para sempre.</p>
-      <p><em>I will love you forever.</em></p>
-      <div class="assinatura">com carinho, SEU SEVEN</div>
-    </div>
+      <p class="destaque"><em>I will love you forever.</em></p>
+      <div class="assinatura">com carinho, <strong>SEU SEVEN</strong></div>
+    </article>
   </section>
 
-  <section id="fotos">
-    <div class="titulo-secao">nossos momentos</div>
-    <div class="galeria">
-      <div class="foto-slot"><img src="foto_1.jpeg" alt="foto 1"></div>
-      <div class="foto-slot"><img src="foto_2.jpeg" alt="foto 2"></div>
-      <div class="foto-slot"><img src="foto_3.jpeg" alt="foto 3"></div>
-      <div class="foto-slot"><img src="foto_4.jpeg" alt="foto 4"></div>
-      <div class="foto-slot"><img src="foto_5.jpeg" alt="foto 5"></div>
-      <div class="foto-slot"><img src="foto_6.jpeg" alt="foto 6"></div>
+  <section id="fotos" class="revelar">
+    <!-- FRASE --><h2 class="titulo-secao"><span class="num">02</span> nossos momentos</h2>
+    <p class="dica-celular">arraste pro lado e toque pra ampliar →</p>
+    <div class="galeria" id="galeria">
+      <!-- FRASE: as legendas (data-legenda) aparecem embaixo de cada polaroid -->
+      <figure class="polaroid" data-legenda="momento 01"><button type="button"><img src="foto_1.jpeg" alt="foto 1" loading="lazy"></button><figcaption>momento 01</figcaption></figure>
+      <figure class="polaroid" data-legenda="momento 02"><button type="button"><img src="foto_2.jpeg" alt="foto 2" loading="lazy"></button><figcaption>momento 02</figcaption></figure>
+      <figure class="polaroid" data-legenda="momento 03"><button type="button"><img src="foto_3.jpeg" alt="foto 3" loading="lazy"></button><figcaption>momento 03</figcaption></figure>
+      <figure class="polaroid" data-legenda="momento 04"><button type="button"><img src="foto_4.jpeg" alt="foto 4" loading="lazy"></button><figcaption>momento 04</figcaption></figure>
+      <figure class="polaroid" data-legenda="momento 05"><button type="button"><img src="foto_5.jpeg" alt="foto 5" loading="lazy"></button><figcaption>momento 05</figcaption></figure>
+      <figure class="polaroid" data-legenda="momento 06"><button type="button"><img src="foto_6.jpeg" alt="foto 6" loading="lazy"></button><figcaption>momento 06</figcaption></figure>
     </div>
+    <div class="pontos" id="pontos" aria-hidden="true"></div>
   </section>
 
-  <section id="motivos">
-    <div class="titulo-secao">motivos pra te amar</div>
+  <section id="motivos" class="revelar">
+    <!-- FRASE --><h2 class="titulo-secao"><span class="num">03</span> motivos pra te amar</h2>
+    <p class="dica">toque em cada cartinha pra virar</p>
     <div class="motivos">
-      <div class="motivo"><b>01.</b> Ver você se aprofundando mais em Deus a cada dia me enche de orgulho.</div>
-      <div class="motivo"><b>02.</b> Você nunca me faltou: sempre esteve pronta para me ajudar e me acolher com compreensão.</div>
-      <div class="motivo"><b>03.</b> Foi a única mulher que soube me trazer esperança nos meus piores momentos.</div>
-      <div class="motivo"><b>04.</b> E o mais importante de tudo: o seu coração é lindo, humilde e transborda amor e gentileza por onde passa, especialmente com as crianças.</div>
+      <!-- FRASE: o texto de cada motivo fica no .verso -->
+      <button type="button" class="motivo"><span class="frente"><b>01</b><i>♥</i></span><span class="verso">Ver você se aprofundando mais em Deus a cada dia me enche de orgulho.</span></button>
+      <button type="button" class="motivo"><span class="frente"><b>02</b><i>♥</i></span><span class="verso">Você nunca me faltou: sempre esteve pronta para me ajudar e me acolher com compreensão.</span></button>
+      <button type="button" class="motivo"><span class="frente"><b>03</b><i>♥</i></span><span class="verso">Foi a única mulher que soube me trazer esperança nos meus piores momentos.</span></button>
+      <button type="button" class="motivo"><span class="frente"><b>04</b><i>♥</i></span><span class="verso">E o mais importante de tudo: o seu coração é lindo, humilde e transborda amor e gentileza por onde passa, especialmente com as crianças.</span></button>
     </div>
   </section>
 
-  <footer>
-   TE AMO GAROTINHAAAA
-    <div class="coracao">💙🤍</div>
+  <section id="versiculo" class="revelar">
+    <blockquote class="versiculo">
+      <!-- FRASE -->
+      <p>“Em todo tempo ama o amigo, e na angústia se nasce o irmão.”</p>
+      <cite>Provérbios 17:17</cite>
+    </blockquote>
+  </section>
+
+  <footer class="revelar">
+    <!-- FRASE --><p class="rodape-texto">TE AMO GAROTINHAAAA</p>
+    <div class="coracao" aria-hidden="true">💙🤍</div>
   </footer>
 
+</main>
+
+<!-- player flutuante -->
+<div class="player" id="player" aria-label="player de música">
+  <button type="button" class="player-botao" id="btn-musica" aria-label="tocar música">
+    <svg class="icone-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    <svg class="icone-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+  </button>
+  <div class="player-info">
+    <!-- FRASE --><span class="player-titulo">nossa música pra sempre</span>
+    <span class="player-sub">always</span>
+    <div class="player-barra"><div class="player-progresso" id="progresso"></div></div>
+  </div>
+  <div class="equalizador" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+</div>
+<audio id="audio-fundo" src="musica2.mp3" loop preload="metadata"></audio>
+
+<!-- visualizador de fotos -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="foto ampliada" hidden>
+  <button type="button" class="lb-fechar" id="lb-fechar" aria-label="fechar">✕</button>
+  <button type="button" class="lb-nav lb-ant" id="lb-ant" aria-label="foto anterior">‹</button>
+  <figure class="lb-figura">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-legenda"></figcaption>
+  </figure>
+  <button type="button" class="lb-nav lb-prox" id="lb-prox" aria-label="próxima foto">›</button>
 </div>
 
-<script>
-function toggleMusica(){
-  const audio = document.getElementById('audio-fundo');
-  const icone = document.getElementById('icone-btn-musica');
-  const texto = document.getElementById('texto-btn-musica');
-  if(audio.paused){
-    audio.play().catch(()=>{});
-    icone.textContent = '❚❚';
-    texto.textContent = 'pausar';
-  } else {
-    audio.pause();
-    icone.textContent = '▶';
-    texto.textContent = 'tocar';
-  }
-}
-</script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
