@@ -1,43 +1,68 @@
 # Mirelly Gatto — álbum de recordações
 
-Site estático (HTML + CSS + JS, sem build). Visual novo em estilo álbum, pensado primeiro para celular.
+Site em **Vite + React + TypeScript + Tailwind CSS v4**, com estrutura **shadcn** (`components.json`, `@/components/ui`, `@/lib/utils`).
+Fundo animado com o componente `celestial-resonance` (partículas).
 
 > ⚠️ **Não publicado.** Este repositório não tem remote nem deploy configurado de propósito.
 
-## Estrutura
+## Rodar
 
+```bash
+npm install
+npm run dev
 ```
-index.html        conteúdo e textos (procure por <!-- FRASE -->)
-css/style.css     visual (cores no topo, em :root)
-js/main.js        abertura, música, carrossel, cartas que viram, foto ampliada
-foto_1..6.jpeg    fotos
-musica2.mp3       música
+
+Abra http://localhost:5173. O `npm run dev` já libera o acesso pela rede: no celular (mesmo Wi-Fi) use o endereço "Network" que aparece no terminal.
+
+Outros comandos:
+
+```bash
+npm run build     # verifica os tipos e gera a versão final em dist/
+npm run preview   # serve a versão final de dist/
 ```
 
 ## Trocar as frases
 
-Abra `index.html` e procure por `FRASE`. Cada texto marcado é provisório.
-As legendas das fotos ficam em dois lugares em cada polaroid: `data-legenda="..."` e no `<figcaption>`.
+**Todos os textos ficam em `src/content.ts`.** Troque o que estiver entre aspas e salve.
+Lá também dá pra escolher quais fotos aparecem no leque do topo (`fotosLeque`) e as legendas das fotos.
 
-## Ver no computador / celular
+## Estrutura
 
-```bash
-python -m http.server 5500
+```
+public/                      fotos (foto_1..6.jpeg) e música (musica2.mp3)
+src/content.ts               TODOS os textos
+src/App.tsx                  monta a página, fundo de partículas e música
+src/components/              Opening, Hero, Letter, Gallery (+ foto ampliada), Reasons, MusicPlayer, Reveal
+src/components/ui/           componentes estilo shadcn (celestial-resonance + demo)
+src/lib/utils.ts             cn() do shadcn
+src/index.css                Tailwind, cores e animações
+components.json              config do shadcn CLI
 ```
 
-Abra http://localhost:5500. Para testar no celular na mesma rede Wi-Fi, rode com
-`python -m http.server 5500 --bind 0.0.0.0` e acesse `http://IP-DO-PC:5500`.
+### Por que `src/components/ui`?
+
+É a pasta padrão do shadcn. O CLI (`npx shadcn@latest add button`, por exemplo) instala os componentes
+direto nela e os imports seguem o padrão `@/components/ui/...`. Mantendo esse caminho, qualquer componente
+de shadcn ou de bibliotecas compatíveis (21st.dev, Magic UI etc.) entra copiando e colando, sem ajustar imports.
+
+### Ajustes feitos no `celestial-resonance`
+
+- `canvas!` dentro de `init()`: o original não passava no TypeScript em modo estrito.
+- `handleResize` ignora mudanças pequenas só na altura: no celular a barra de endereço some/aparece ao rolar
+  e o original reiniciava todas as partículas, fazendo o fundo piscar.
+- No `App.tsx` o número de partículas cai no celular (450) e para quem usa "reduzir movimento" (200).
 
 ## Versionamento
 
 - `main` — versão original (tag `v1-original`)
-- `redesign` — versão nova
+- `redesign` — álbum em HTML/CSS/JS puro (fundo creme)
+- `react` — esta versão (React + partículas)
 
 Quando a conta nova do GitHub estiver pronta:
 
 ```bash
 git remote add origin https://github.com/USUARIO-NOVO/NOME-DO-REPO.git
-git push -u origin redesign
+git push -u origin react
 ```
 
 Crie o repositório como **privado** se não quiser que ninguém veja antes da hora.

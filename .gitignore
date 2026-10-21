@@ -6,3 +6,4 @@ desktop.ini
 !.vscode/settings.json
 .vercel
 node_modules/
+dist/

@@ -1,137 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#f6efe4">
-<meta name="robots" content="noindex, nofollow">
-<title>Para minha melhor amiga</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<!--
-  =====================================================================
-  TEXTOS: todo texto marcado com  <!- - FRASE - ->  é provisório.
-  Troque à vontade; o layout se ajusta sozinho.
-  =====================================================================
--->
-
-<!-- tela de abertura (o toque também libera a música no celular) -->
-<div class="abertura" id="abertura">
-  <div class="abertura-conteudo">
-    <div class="envelope" aria-hidden="true">
-      <div class="envelope-aba"></div>
-      <div class="envelope-selo">M</div>
-    </div>
-    <!-- FRASE --><p class="abertura-texto">tem uma coisinha aqui pra você, Mi</p>
-    <button class="botao-abrir" id="btn-abrir">abrir 💌</button>
-    <button class="abrir-sem-som" id="btn-abrir-mudo">abrir sem música</button>
-  </div>
-</div>
-
-<main class="conteudo">
-
-  <header class="hero revelar">
-    <!-- FRASE --><div class="eyebrow">para a melhor amiga do mundo</div>
-    <h1>Mirelly <span>Gatto</span> 💙</h1>
-    <!-- FRASE --><p class="subtitulo">Um cantinho só nosso pra guardar as fotos, as risadas e os motivos de eu te amar tanto.</p>
-    <!-- leque de fotos da abertura (troque os números das fotos se quiser outras) -->
-    <a href="#fotos" class="pilha" aria-label="ver nossas fotos">
-      <img src="foto_1.jpeg" alt="" decoding="async">
-      <img src="foto_3.jpeg" alt="" decoding="async">
-      <img src="foto_5.jpeg" alt="" decoding="async">
-    </a>
-    <a href="#carta" class="rolar" aria-label="ir para a carta">
-      <span>role pra baixo</span>
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </header>
-
-  <section id="carta" class="revelar">
-    <!-- FRASE --><h2 class="titulo-secao"><span class="num">01</span> uma cartinha pra você</h2>
-    <article class="carta">
-      <div class="carta-selo" aria-hidden="true">♥</div>
-      <!-- FRASE (carta inteira) -->
-      <p>Mi, em primeiro lugar, sou infinitamente grato a Deus por ter colocado você na minha vida como amiga. Sinceramente, não sei o que seria de mim sozinho nesses últimos tempos, nem com quem compartilharia meus dias.</p>
-      <p>Estar ao seu lado me faz muito feliz, e é um presente que quero cuidar para a vida toda.</p>
-      <p>Eu te amo demais! Obrigado por sempre me ouvir, me apoiar e estar presente. Fiz este texto de coração renovado para você. Vou te amar para sempre.</p>
-      <p class="destaque"><em>I will love you forever.</em></p>
-      <div class="assinatura">com carinho, <strong>SEU SEVEN</strong></div>
-    </article>
-  </section>
-
-  <section id="fotos" class="revelar">
-    <!-- FRASE --><h2 class="titulo-secao"><span class="num">02</span> nossos momentos</h2>
-    <p class="dica-celular">arraste pro lado e toque pra ampliar →</p>
-    <div class="galeria" id="galeria">
-      <!-- FRASE: as legendas (data-legenda) aparecem embaixo de cada polaroid -->
-      <figure class="polaroid" data-legenda="momento 01"><button type="button"><img src="foto_1.jpeg" alt="foto 1" decoding="async"></button><figcaption>momento 01</figcaption></figure>
-      <figure class="polaroid" data-legenda="momento 02"><button type="button"><img src="foto_2.jpeg" alt="foto 2" decoding="async"></button><figcaption>momento 02</figcaption></figure>
-      <figure class="polaroid" data-legenda="momento 03"><button type="button"><img src="foto_3.jpeg" alt="foto 3" decoding="async"></button><figcaption>momento 03</figcaption></figure>
-      <figure class="polaroid" data-legenda="momento 04"><button type="button"><img src="foto_4.jpeg" alt="foto 4" decoding="async"></button><figcaption>momento 04</figcaption></figure>
-      <figure class="polaroid" data-legenda="momento 05"><button type="button"><img src="foto_5.jpeg" alt="foto 5" decoding="async"></button><figcaption>momento 05</figcaption></figure>
-      <figure class="polaroid" data-legenda="momento 06"><button type="button"><img src="foto_6.jpeg" alt="foto 6" decoding="async"></button><figcaption>momento 06</figcaption></figure>
-    </div>
-    <div class="pontos" id="pontos" aria-hidden="true"></div>
-  </section>
-
-  <section id="motivos" class="revelar">
-    <!-- FRASE --><h2 class="titulo-secao"><span class="num">03</span> motivos pra te amar</h2>
-    <p class="dica">toque em cada cartinha pra virar</p>
-    <div class="motivos">
-      <!-- FRASE: o texto de cada motivo fica no .verso -->
-      <button type="button" class="motivo"><span class="frente"><b>01</b><i>♥</i></span><span class="verso">Ver você se aprofundando mais em Deus a cada dia me enche de orgulho.</span></button>
-      <button type="button" class="motivo"><span class="frente"><b>02</b><i>♥</i></span><span class="verso">Você nunca me faltou: sempre esteve pronta para me ajudar e me acolher com compreensão.</span></button>
-      <button type="button" class="motivo"><span class="frente"><b>03</b><i>♥</i></span><span class="verso">Foi a única mulher que soube me trazer esperança nos meus piores momentos.</span></button>
-      <button type="button" class="motivo"><span class="frente"><b>04</b><i>♥</i></span><span class="verso">E o mais importante de tudo: o seu coração é lindo, humilde e transborda amor e gentileza por onde passa, especialmente com as crianças.</span></button>
-    </div>
-  </section>
-
-  <section id="versiculo" class="revelar">
-    <blockquote class="versiculo">
-      <!-- FRASE -->
-      <p>“Em todo tempo ama o amigo, e na angústia se nasce o irmão.”</p>
-      <cite>Provérbios 17:17</cite>
-    </blockquote>
-  </section>
-
-  <footer class="revelar">
-    <!-- FRASE --><p class="rodape-texto">TE AMO GAROTINHAAAA</p>
-    <div class="coracao" aria-hidden="true">💙🤍</div>
-  </footer>
-
-</main>
-
-<!-- player flutuante -->
-<div class="player" id="player" aria-label="player de música">
-  <button type="button" class="player-botao" id="btn-musica" aria-label="tocar música">
-    <svg class="icone-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-    <svg class="icone-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
-  </button>
-  <div class="player-info">
-    <!-- FRASE --><span class="player-titulo">nossa música pra sempre</span>
-    <span class="player-sub">always</span>
-    <div class="player-barra"><div class="player-progresso" id="progresso"></div></div>
-  </div>
-  <div class="equalizador" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-</div>
-<audio id="audio-fundo" src="musica2.mp3" loop preload="metadata"></audio>
-
-<!-- visualizador de fotos -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="foto ampliada" hidden>
-  <button type="button" class="lb-fechar" id="lb-fechar" aria-label="fechar">✕</button>
-  <button type="button" class="lb-nav lb-ant" id="lb-ant" aria-label="foto anterior">‹</button>
-  <figure class="lb-figura">
-    <img id="lb-img" src="" alt="">
-    <figcaption id="lb-legenda"></figcaption>
-  </figure>
-  <button type="button" class="lb-nav lb-prox" id="lb-prox" aria-label="próxima foto">›</button>
-</div>
-
-<script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#00050f" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Para minha melhor amiga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,400;1,9..144,600&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

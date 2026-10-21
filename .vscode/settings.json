@@ -1,6 +1,6 @@
 {
-  "liveServer.settings.port": 5500,
-  "liveServer.settings.host": "0.0.0.0",
   "editor.wordWrap": "on",
-  "files.encoding": "utf8"
+  "files.encoding": "utf8",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.associations": { "*.css": "tailwindcss" }
 }

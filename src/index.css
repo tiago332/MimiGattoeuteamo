@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* Variáveis no formato do shadcn. --background fica em HSL "puro" porque o
+   celestial-resonance usa bg-[hsl(var(--background))]. */
+:root {
+  --background: 224 100% 4%;
+  --foreground: 220 40% 96%;
+  --rosa: #f9a8c0;
+  --azul: #93c5fd;
+}
+
+@theme {
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-mao: "Caveat", "Segoe Print", cursive;
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --color-rosa: var(--rosa);
+  --color-azul: var(--azul);
+  --color-noite: hsl(var(--background));
+
+  --animate-flutuar: flutuar 3.2s ease-in-out infinite;
+  --animate-quicar: quicar 1.6s ease-in-out infinite;
+  --animate-bater: bater 1.4s ease-in-out infinite;
+  --animate-eq: eq 0.9s ease-in-out infinite;
+  --animate-aparecer: aparecer 0.25s ease;
+
+  @keyframes flutuar {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+  @keyframes quicar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+  @keyframes bater {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+  }
+  @keyframes eq {
+    0%, 100% { height: 4px; }
+    50% { height: 20px; }
+  }
+  @keyframes aparecer {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    background: hsl(var(--background));
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: hsl(var(--foreground));
+    /* sem background aqui: o fundo do body cobriria o canvas de partículas (z-index negativo) */
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  :focus-visible {
+    outline: 3px solid var(--azul);
+    outline-offset: 3px;
+  }
+}
+
+/* cartas de motivo que viram */
+.virar { perspective: 900px; }
+.virar-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.virar-verso { transform: rotateY(180deg); }
+.virar[aria-pressed="true"] .virar-frente { transform: rotateY(-180deg); }
+.virar[aria-pressed="true"] .virar-verso { transform: rotateY(0); }
+
+/* esconde a barra do carrossel */
+.sem-barra { scrollbar-width: none; }
+.sem-barra::-webkit-scrollbar { display: none; }
+
+/* entrada das seções */
+.revelar { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.revelar.visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+  .revelar { opacity: 1; transform: none; }
+}
